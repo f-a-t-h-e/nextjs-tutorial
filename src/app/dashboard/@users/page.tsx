@@ -1,12 +1,6 @@
-export const metadata = {
-  title: {
-    template: "Dashboard | %s",
-    default: "Dashboard",
-  },
-  description: "This is the dashboard",
-};
+import Table from "../table";
 
-export default function Dashboard() {
+export default function UsersPage() {
   const data = [
     {
       values: {
@@ -60,7 +54,24 @@ export default function Dashboard() {
 
   return (
     <div className="">
-      <h1 className="text-3xl my-3">Dashboard</h1>
+      <h2 className="text-2xl mb-2 underline">Users</h2>
+      <label>
+        <input
+          type="text"
+          placeholder="This will Disappear on any root except /dashboard"
+          className="m-3 px-3 py-1 text-slate-800"
+        />
+      </label>
+      <Table
+        data={{
+          header: [
+            { name: "name", text: "Name" },
+            { name: "age", text: "Age" },
+            { name: "email", text: "Email" },
+          ],
+          rows: data.concat(data, data, data),
+        }}
+      />
     </div>
   );
 }

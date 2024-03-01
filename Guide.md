@@ -65,8 +65,30 @@
 
 <!-- ### To enable TailwindCSS
 You need to `import './globals.css'` in a `page.tsx` or a `layout.tsx` -->
-
-<!-- ## Files/Folders guide -->
+### How NextJs structures the files that are on the same level
+- path
+  - layout.tsx
+  - template.tsx
+  - error.tsx
+  - loading.tsx
+  - not-found.tsx
+  - page.tsx
+```tsx
+<>
+  <Layout>
+    <Template>
+      <ErrorBoundary fullback={<Error />}>
+        <Suspense fallback={<Loading />}>
+          <ErrorBoundary fullback={<NotFound />}>
+            <Page />
+          </ErrorBoundary>
+        </Suspense>
+      </ErrorBoundary>
+    </Template>
+  </Layout>
+</>
+```
+## Files/Folders guide
 
 <!-- ### src
 This folder contains everything we mainly focus on
@@ -78,3 +100,28 @@ This has common designs and components that all pages share
 
 ### page.tsx
 This represents a page -->
+
+### Parallel routes
+When we have a page with more than one component and we want to update each one based on the current route separately
+#### Example
+In the `/dashboard` route we have the components `@users` & `@revenue` unchanged don't have an `/archived` route but have `default.tsx` files
+
+The files `default.tsx` will appeare when we first visit the route `/dashboard/archived` then `page.tsx` is used
+
+We have for `@revenue` only `default.tsx` file to make sure we have this content the same on all routes
+
+### Intercepted routes
+While being on route `/x` and want to go to route `/y` and we have at the same level of the page of the route `/x` a folder with the name `(.)y` this folder will be a replacement of the normal/default route of `/y` but if we refresh the page or visit it from outside the path of `/x` route, it will render the normal/default route
+#### Example
+In the path `/posts` we have `page.tsx` this will render when we first go to the endpoint `/posts` and if we navigate to `/posts/post/[postid]` it will still be rendered
+
+If we refresh the page (While we are at `/posts/post/[postid]`) or visit `/posts/post/[postid]` from outside `/posts` path, the default page (`/posts/default.tsx`) will be rendered
+
+For `/posts/@post`:
+- on the route `/posts` this file `/posts/@post/page.tsx` will be rendered
+- on the route `/posts/post/[postid]`
+  - If we are coming from `/posts` this file `/posts/(.)post/[postid]/page.tsx` will be rendered
+  - If we are coming from any other place (like refreshing the page, visiting the route for the fist time in this session or visiting the route from outside `/posts` e.g from `/about`) this file `/posts/post/[postid]/page.tsx` will be rendered
+
+##### Why are you using the parallel route `@post` ?
+To apply the file `/posts/default.tsx` instead of `/posts/page.tsx` when needed
