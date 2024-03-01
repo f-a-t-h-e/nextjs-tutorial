@@ -1,4 +1,5 @@
-import './globals.css'
+import "./globals.css";
+import Nav from "./Nav";
 
 export const metadata = {
   title: "Next.js",
@@ -12,48 +13,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="">
-        <ul className='flex flex-wrap justify-evenly bg-slate-600 border-b border-b-slate-100 [&_a]:min-w-32 [&_a]:block [&_a]:p-2 [&_a:hover]:text-slate-600 [&_a:hover]:bg-slate-100 text-center'>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/about">about</a>
-          </li>
-          <li>
-            <a href="/profile">profile</a>
-          </li>
-          <li className='[&:hover>ul]:block relative'>
-            <a href="/blog">blog</a>
-            <ul className='hidden absolute top-full left-0 bg-slate-600 outline outline-1 outline-slate-100 shadow-sm rounded-md rounded-t-none overflow-hidden shadow-white'>
-              <li className='border-b border-b-slate-100'><a href="/blog/first">first</a></li>
-              <li><a href="/blog/second">second</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="/products">products</a>
-          </li>
-          <li>
-            <a href="/docs">docs</a>
-          </li>
-          <li>
-            <a href="/dashboard">dashboard</a>
-          </li>
-          <li>
-            <a href="/_underscore">_underscore</a>
-          </li>
-          <li>
-            <a href="/login">login</a>
-          </li>
-          <li>
-            <a href="/register">register</a>
-          </li>
-          <li>
-            <a href="/forgot-password">forgot password</a>
-          </li>
-        </ul>
-        {/* <hr className='border-white mb-3'/> */}
+      <body className="flex flex-col min-h-screen">
+        <Nav />
         {children}
+        <footer className="py-4 mt-auto">
+          <p className="text-center">
+            &copy; {new Date().getFullYear()} All rights reserved
+          </p>
+        </footer>
       </body>
     </html>
   );

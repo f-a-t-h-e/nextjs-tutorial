@@ -1,16 +1,18 @@
-interface PageParams {
+import Link from "next/link";
+
+interface Props {
   params: { slug: string[] };
 }
-export default function Docs({ params }: PageParams) {
+export default function Docs({ params }: Props) {
   switch (params.slug?.length) {
     case 1:
       return (
         <div>
           <h1>
             Viewing docs for{" "}
-            <a href={`/docs/${params.slug[0]}`} className="underline">
+            <Link href={`/docs/${params.slug[0]}`} className="underline">
               feature {params.slug[0]}
-            </a>
+            </Link>
           </h1>
           <ul className="pl-10">
             {Array(10)
@@ -20,23 +22,23 @@ export default function Docs({ params }: PageParams) {
                   key={`${params.slug[0]}${j}`}
                   className="[&:hover>ul]:block relative"
                 >
-                  <a
+                  <Link
                     href={`/docs/${params.slug[0]}/${j}`}
                     className="relative bg-black z-10 w-36 block p-1 hover:bg-white hover:text-black"
                   >
                     Concept {j}
-                  </a>
+                  </Link>
                   <ul className="pl-10 hidden absolute top-full left-0">
                     {Array(10)
                       .fill("")
                       .map((_, k) => (
                         <li key={`${params.slug[0]}${j}${k}`}>
-                          <a
+                          <Link
                             href={`/docs/${params.slug[0]}/${j}/${k}`}
                             className="bg-black relative w-36 z-20 block whitespace-nowrap p-1 hover:bg-white hover:text-black"
                           >
                             Example {k}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                   </ul>
@@ -50,29 +52,29 @@ export default function Docs({ params }: PageParams) {
         <div>
           <h1>
             Viewing docs for{" "}
-            <a href={`/docs/${params.slug[0]}`} className="underline">
+            <Link href={`/docs/${params.slug[0]}`} className="underline">
               feature {params.slug[0]}
-            </a>{" "}
+            </Link>{" "}
             and{" "}
-            <a
+            <Link
               href={`/docs/${params.slug[0]}/${params.slug[1]}`}
               className="underline"
             >
               {" "}
               concept {params.slug[1]}
-            </a>
+            </Link>
           </h1>
           <ul className="pl-10">
             {Array(10)
               .fill("")
               .map((_, k) => (
                 <li key={`${params.slug[0]}${params.slug[1]}${k}`}>
-                  <a
+                  <Link
                     href={`/docs/${params.slug[0]}/${params.slug[1]}/${k}`}
                     className="bg-black relative w-36 z-20 block whitespace-nowrap p-1 hover:bg-white hover:text-black"
                   >
                     Example {k}
-                  </a>
+                  </Link>
                 </li>
               ))}
           </ul>
@@ -83,17 +85,17 @@ export default function Docs({ params }: PageParams) {
         <div>
           <h1>
             Viewing docs for{" "}
-            <a href={`/docs/${params.slug[0]}`} className="underline">
+            <Link href={`/docs/${params.slug[0]}`} className="underline">
               feature {params.slug[0]}
-            </a>
+            </Link>
             ,{" "}
-            <a
+            <Link
               href={`/docs/${params.slug[0]}/${params.slug[1]}`}
               className="underline"
             >
               {" "}
               concept {params.slug[1]}
-            </a>{" "}
+            </Link>{" "}
             and example {params.slug[2]}
           </h1>
         </div>
@@ -107,12 +109,12 @@ export default function Docs({ params }: PageParams) {
               .fill("")
               .map((_, i) => (
                 <li key={i} className="[&:hover>ul]:block relative w-fit">
-                  <a
+                  <Link
                     href={`/docs/${i}`}
                     className="block w-36 p-1 hover:bg-white hover:text-black"
                   >
                     Feature {i}
-                  </a>
+                  </Link>
                   <ul className="pl-10 hidden absolute top-full left-0">
                     {Array(10)
                       .fill("")
@@ -121,23 +123,23 @@ export default function Docs({ params }: PageParams) {
                           key={`${i}${j}`}
                           className="[&:hover>ul]:block relative"
                         >
-                          <a
+                          <Link
                             href={`/docs/${i}/${j}`}
                             className="relative bg-black z-10 w-36 block p-1 hover:bg-white hover:text-black"
                           >
                             Concept {j}
-                          </a>
+                          </Link>
                           <ul className="pl-10 hidden absolute top-full left-0">
                             {Array(10)
                               .fill("")
                               .map((_, k) => (
                                 <li key={`${i}${j}${k}`}>
-                                  <a
+                                  <Link
                                     href={`/docs/${i}/${j}/${k}`}
                                     className="bg-black relative w-36 z-20 block whitespace-nowrap p-1 hover:bg-white hover:text-black"
                                   >
                                     Example {k}
-                                  </a>
+                                  </Link>
                                 </li>
                               ))}
                           </ul>
