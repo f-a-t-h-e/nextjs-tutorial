@@ -6,7 +6,7 @@ export default function ErrorBoundary({ error, reset }: { error: Error;reset: ()
   return (
     <>
       <h1 className="text-3xl">Error in review : {error.message} </h1>
-      <button onClick={reset} className="p-4 text-5xl text-white bg-slate-800">Try again</button>
+      <button onClick={reset} className="p-4 text-5xl text-white bg-slate-800 active:scale-95">Try again</button>
     </>
   );
 }

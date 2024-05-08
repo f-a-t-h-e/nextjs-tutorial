@@ -1,6 +1,7 @@
-"use client"
+"use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import Loading from "./@revenue/loading";
 
 export default function RootLayout({
   children,
@@ -15,17 +16,21 @@ export default function RootLayout({
   users: React.ReactNode;
   login: React.ReactNode;
 }) {
-    const [isLoggedIn, setIsLoggedIn] = useState(true)
-  return isLoggedIn ?(
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  return isLoggedIn ? (
     <>
       <div className="mx-4">{children}</div>
-      <div className="flex mx-4 gap-4">
+      <div className="grid grid-cols-[minmax(200px,1fr)_minmax(100px,auto)] mx-4 gap-4 max-w-full">
         <div className="flex flex-col flex-grow">
-          <div className="my-4">{revenue}</div>
-          <div className="my-4">{users}</div>
+          <div className="my-4 flex flex-col max-h-[30rem]">{users}</div>
+          <div className="my-4 flex flex-col max-h-[40rem]">
+            <Suspense fallback={<Loading />}>{revenue}</Suspense>
+          </div>
         </div>
         <div className="h-fit sticky top-2">{notifications}</div>
       </div>
     </>
-  ): (<>{login}</>);
+  ) : (
+    <>{login}</>
+  );
 }

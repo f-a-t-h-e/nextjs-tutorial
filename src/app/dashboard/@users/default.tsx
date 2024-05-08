@@ -53,12 +53,12 @@ export default function UsersPage() {
       ] as const;
     
       return (
-        <div className="">
+        <div className="max-h-full grid grid-cols-[100%]">
           <h2 className="text-2xl mb-2 underline">Default Users</h2>
           <input
         type="text"
         placeholder="This will Disappear on the root rout of this layout /dashboard"
-        className="m-3 px-3 py-1 text-slate-800"
+        className="m-3 px-3 py-1 text-slate-800  max-w-[calc(100%-1.5rem)]"
       />
           <Table
             data={{

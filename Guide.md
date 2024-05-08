@@ -111,8 +111,18 @@ The files `default.tsx` will appeare when we first visit the route `/dashboard/a
 We have for `@revenue` only `default.tsx` file to make sure we have this content the same on all routes
 
 ### Intercepted routes
+- `(.)route` to match segments on the same level
+- `(..)route` to match segments one level above
+- `(..)(..)route` to match segments two levels above
+- `(...)route` to match segments from the root app
+
 While being on route `/x` and want to go to route `/y` and we have at the same level of the page of the route `/x` a folder with the name `(.)y` this folder will be a replacement of the normal/default route of `/y` but if we refresh the page or visit it from outside the path of `/x` route, it will render the normal/default route
-#### Example
+<!-- 
+`(..)route`
+
+While being on route `/x` and want to go to route `/y` and we have at the same level of the page of the route `/x` a folder with the name `(.)y` this folder will be a replacement of the normal/default route of `/y` but if we refresh the page or visit it from outside the path of `/x` route, it will render the normal/default route -->
+
+#### Example 1 (.)route
 In the path `/posts` we have `page.tsx` this will render when we first go to the endpoint `/posts` and if we navigate to `/posts/post/[postid]` it will still be rendered
 
 If we refresh the page (While we are at `/posts/post/[postid]`) or visit `/posts/post/[postid]` from outside `/posts` path, the default page (`/posts/default.tsx`) will be rendered
@@ -123,5 +133,15 @@ For `/posts/@post`:
   - If we are coming from `/posts` this file `/posts/(.)post/[postid]/page.tsx` will be rendered
   - If we are coming from any other place (like refreshing the page, visiting the route for the fist time in this session or visiting the route from outside `/posts` e.g from `/about`) this file `/posts/post/[postid]/page.tsx` will be rendered
 
-##### Why are you using the parallel route `@post` ?
-To apply the file `/posts/default.tsx` instead of `/posts/page.tsx` when needed
+#### Example 2 (..)route
+In the path `/blog` we have `page.tsx` this will render when we first go to the endpoint `/blog` and if we navigate to `/blog/first` the file `/blog/first/page.tsx` will be rendered then if we navigate to `/blog/second` (from `/blog/first` or sub paths like from `/blog/first/third`) the file `/blog/first/(..)second/page.tsx` will be rendered (instead of `/blog/second/page.tsx)
+
+If we refresh the page (While we are at `/blog/second`) or visit `/blog/second` from outside `/blog/first` paths, the normal page (`/blog/second/page.tsx`) will be rendered
+
+<!-- @todo : Write scenarios like navigating from one route to another... -->
+
+##### Why are you using the Intercepte routes `(.)`,`(..)` ?
+To apply different UI and actions from different endpoints.
+
+###### Note : `(..)(..)` is not currently working at the time of writing these docs.
+[(..)(..) intercepting routes does not work](https://github.com/vercel/next.js/issues/57016)

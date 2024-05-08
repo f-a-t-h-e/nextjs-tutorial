@@ -38,7 +38,7 @@ export default function Table<T extends string | number = "">({
 }) {
   const mappingObj = data.header.map((val) => val.name as typeof val.name);
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto overflow-y-auto max-w-full max-h-full">
       <table className="table-auto min-w-full">
         <thead className="bg-gray-800 text-white">
           <tr>

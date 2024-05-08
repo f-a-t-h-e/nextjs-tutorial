@@ -45,14 +45,19 @@ const revenueData: TableProps<"year" | "month" | "revenue"> = {
   ],
 };
 
-export default function RevenuePage() {
+export default async function RevenuePage() {
+  await new Promise(r=>{
+    setTimeout(()=>{
+      r(undefined);
+    },5000)
+  });
   return (
-    <div className="">
+    <div className="max-h-full grid grid-cols-[100%]">
       <h2 className="text-2xl mb-2 underline">Default Revenue</h2>
       <input
         type="text"
         placeholder="This will Stay"
-        className="m-3 px-3 py-1 text-slate-800"
+        className="m-3 px-3 py-1 text-slate-800 max-w-[calc(100%-1.5rem)]"
       />
       <Table
         data={{

@@ -1,3 +1,3 @@
 export default function DefaultPostsFeedPage() {
-    return (<div hidden>nothing here for feed</div>)
+    return (<div >nothing here for feed</div>)
 }

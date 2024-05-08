@@ -15,6 +15,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="flex flex-col min-h-screen">
         <Nav />
+      <input type="text" placeholder="Gets lost on navigation (app/layout.tsx)" className="m-3 px-3 py-1 text-slate-800" />
         {children}
         <footer className="py-4 mt-auto">
           <p className="text-center">

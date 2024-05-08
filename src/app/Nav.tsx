@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface ILink {
@@ -28,8 +28,9 @@ const links: ILink[] = [
   { text: "Register", path: "/register" },
   { text: "Forgot Password", path: "/forgot-password" },
   { text: "Order Product", path: "/order-product"},
-  { text: "Posts Feed", path: "/posts"},
   { text: "Files Structure", path: "/files-structure"},
+  { text: "Intercepted routes (Posts Feed)", path: "/posts"},
+  { text: "Intercepted routes test", path: "/posts/post/1"}
 ];
 
 function getLinksHtml(links: ILink[]) {
@@ -64,6 +65,7 @@ function getLinksHtml(links: ILink[]) {
 }
 export default function Nav() {
   const [value, setValue] = useState("");
+  const router = useRouter();
     return (
     <nav className="bg-slate-600 border-b border-b-slate-100">
       <input type="text" placeholder="Doesn't get lost" className="m-3 px-3 py-1 text-slate-800"
@@ -74,6 +76,11 @@ export default function Nav() {
           </li>
         {getLinksHtml(links)}
       </ul>
+      <div className="flex items-center justify-center py-2">
+        <button className="rounded-lg bg-slate-800 py-2 px-4 active:scale-95"
+        onClick={()=> router.refresh()}
+        >Refersh <code>router.refresh()</code></button>
+      </div>
     </nav>
   );
 }

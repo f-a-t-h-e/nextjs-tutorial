@@ -13,12 +13,12 @@ export default function Overlay({
   }
   return (
     <div
-      className="w-full h-full absolute -z-50 bg-slate-950/35"
+      className="min-w-full min-h-full absolute -z-50 bg-slate-950/35 top-0 left-0 row-[1/4] col-[1/2]"
       onClick={hundleClose}
     >
       <style jsx global>{`
         body {
-          overflow-y: clip;
+          overflow-y: hidden;
       `}</style>
     </div>
   );

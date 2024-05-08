@@ -30,11 +30,11 @@ export default function PostCardOnFeed({
       {/* Use absolute to cover only the feed section */}
       {/* <div className="absolute top-0 left-0 z-[100] w-full h-full"> */}
       <div className="fixed top-0 left-0 z-[100] w-full h-full">
-        <div className="sticky bottom-0 left-0 h-full w-full max-h-screen">
+        <div className="relative grid grid-cols-1 grid-rows-[20vh_1fr_20vh] h-full w-full max-h-screen overflow-y-scroll -z-[1]">
           <Overlay url="/posts" />
-          <div className="h-full w-full flex items-center justify-center pointer-events-none  min-h-screen">
-            <div className="max-w-3xl pointer-events-auto">
-              <h1 className="text-3xl">This post {postid} for feed</h1>
+          {/* <div className="h-full w-full pointer-events-none  min-h-screen px-2"> */}
+            <div className="max-w-3xl pointer-events-auto mx-auto row-[2/3] col-[1/2]">
+              <h1 className="text-3xl bg-slate-800/90 text-center py-2">This post {postid} for feed</h1>
               <div key={id} className="bg-slate-700 rounded-lg p-4">
                 <div className="flex items-center">
                   <Image
@@ -69,7 +69,7 @@ export default function PostCardOnFeed({
                 </div>
               </div>
             </div>
-          </div>
+          {/* </div> */}
         </div>
       </div>
     </>
